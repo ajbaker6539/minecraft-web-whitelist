@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Whitelist Request Form</title>
+</head>
+
+<body>
+    <div class="form">
+        <form action="/test/" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>

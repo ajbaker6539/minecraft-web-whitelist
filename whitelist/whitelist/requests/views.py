@@ -1,7 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.template import loader
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from .models import User, UserForm
 
 # Create your views here.
 
 def request(request):
-    return HttpResponseNotFound
+    if request.POST:
+        user = UserForm(request.POST)
+        if user.is_valid():
+            user.save()
+            return HttpResponseRedirect('sent/')
+        
+
+    context = {
+        "form": UserForm()
+    }
+    template = loader.get_template("request.html")
+    return HttpResponse(template.render(context, request))
