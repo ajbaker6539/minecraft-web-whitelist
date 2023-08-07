@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from whitelist.requests.views import request
+from whitelist.view_requests.views import view_requests
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('request/', request),
+    path('view_requests/', view_requests),
 ]
