@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+    <title>View Requests</title>
+</head>
+
+<body>
+    <style>
+        html {
+            border: 1px solid black;
+            margin: 5px;
+        }
+        tr {
+            border: 1px solid black;
+        }
+        th {
+            border-right: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Discord Username</th>
+                <th>Minecraft Username</th>
+                <th>Platform</th>
+                <th>Accepted</th>
+            </tr>
+        </thead>
+    {% for request in forms %}
+        <tbody>
+            <tr>
+                <th>{{request.first_name}}</th>
+                <th>{{request.discord}}</th>
+                <th>{{request.username}}</th>
+                <th>{{request.platform}}</th>
+                <th>{{request.accepted}}</th>
+                <form method="post">
+                    {% csrf_token %}
+                    <input name={{request.date_created}} type="submit" value="Accepted">
+                </form>
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+</body>
