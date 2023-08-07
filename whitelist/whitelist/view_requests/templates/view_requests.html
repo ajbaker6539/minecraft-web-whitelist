@@ -12,7 +12,7 @@
         tr {
             border: 1px solid black;
         }
-        th {
+        th, td {
             border-right: 1px solid black;
             padding: 5px;
         }
@@ -30,15 +30,18 @@
     {% for request in forms %}
         <tbody>
             <tr>
-                <th>{{request.first_name}}</th>
-                <th>{{request.discord}}</th>
-                <th>{{request.username}}</th>
-                <th>{{request.platform}}</th>
-                <th>{{request.accepted}}</th>
-                <form method="post">
-                    {% csrf_token %}
-                    <input name={{request.date_created}} type="submit" value="Accepted">
-                </form>
+                <td>{{request.first_name}}</td>
+                <td>{{request.discord}}</td>
+                <td>{{request.username}}</td>
+                <td>{{request.platform}}</td>
+                <td>{{request.accepted}}</td>
+                <td>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="date_created" value="{{request.date_created}}">
+                        <input type="submit" value="Accept">
+                    </form>
+                </td>
             </tr>
         </tbody>
     {% endfor %}
