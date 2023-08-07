@@ -10,11 +10,9 @@ def request(request):
         user = UserForm(request.POST)
         if user.is_valid():
             user.save()
-            return HttpResponseRedirect('sent/')
+            template = loader.get_template("sent.html")
+            return HttpResponse(template.render({}, request))
         
-
-    context = {
-        "form": UserForm()
-    }
+    context = { "form": UserForm() }
     template = loader.get_template("request.html")
     return HttpResponse(template.render(context, request))
