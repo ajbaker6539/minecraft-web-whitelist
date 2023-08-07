@@ -21,6 +21,6 @@ from whitelist.view_requests.views import view_requests
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('request/', request),
-    path('view_requests/', view_requests),
+    path('home/', request),
+    path('requests/', view_requests),
 ]
