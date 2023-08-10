@@ -9,3 +9,12 @@ th, td {
     border-right: 1px solid black;
     padding: 5px;
 }
+
+.accepted {
+    padding: 5px;
+    background: green;
+}
+.rejected {
+    padding: 5px;
+    background: red;
+}

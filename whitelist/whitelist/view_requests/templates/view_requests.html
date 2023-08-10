@@ -6,6 +6,17 @@
 
 <body>
     <link rel="stylesheet" href={% static 'css/view-requests.css'%}>
+    <script src={% static 'js/view-requests.js' %}></script> 
+    {% if status == "rejected" %}
+        <div class="rejected">
+            <p>{{name}} has been rejected!</p>
+        </div>
+    {% endif %}
+    {% if status == "accepted" %}
+        <div class="accepted">
+            <p>{{name}} has been accepted!</p>
+        </div>
+    {% endif %}
     <table>
         <thead>
             <tr>
@@ -25,11 +36,12 @@
                 <td>{{request.platform}}</td>
                 <td>{{request.accepted}}</td>
                 <td>
-                    <form action="" method="post">
+                    <form action="" method="post" id="submission">
                         {% csrf_token %}
                         <input type="hidden" name="date_created" value="{{request.date_created}}">
-                        <button type="submit" onclick="confirmAccept()" name="option" value="accept">Accept</button>
-                        <button type="submit" onclick="confirmReject()" name="option" value="reject" style="background-color: red;">Reject</button>
+                        <button type="submit" onclick="clicked(event, 'accept')" name="option" value="accept">Accept</button>
+                        <br>
+                        <button type="submit" onclick="clicked(event, 'reject')" name="option" value="reject" style="background-color: red;">Reject</button>
                     </form>
                 </td>
             </tr>

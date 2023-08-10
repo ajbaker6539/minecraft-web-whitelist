@@ -6,13 +6,23 @@ from whitelist.requests.models import UserRequest
 
 def view_requests(request):
     template = loader.get_template("view_requests.html")
-    forms = UserRequest.objects.filter(accepted="False")
+    forms = UserRequest.objects.filter(status="Applied")
 
     if request.POST:
         user = UserRequest.objects.get(date_created=request.POST["date_created"])
-        user.accepted = True
-        user.save()
-        context = {"forms": forms, "accepted_name": user.username}
+        if request.POST["option"] == "accept":
+            user.status = "Accepted"
+            user.save()
+            username = user.username
+            context = {"forms": forms, "status": "accepted", "name": username}
+        elif request.POST["option"] == "reject":
+            user.status = "Rejected"
+            if request.POST["reason"]:
+                user.reason = request.POST["reason"]
+                print("POST!")
+            user.save()
+            username = user.username
+            context = {"forms": forms, "status": "rejected", "name": username}
     else:
-        context = {"forms": forms}
+        context = {"forms": forms, "status": "none"}
     return HttpResponse(template.render(context, request))
