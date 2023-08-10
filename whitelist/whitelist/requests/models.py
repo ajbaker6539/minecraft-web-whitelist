@@ -11,11 +11,11 @@ class UserRequest(models.Model):
     ]
 
     first_name = models.CharField(max_length=20)
-    date_created = models.CharField(max_length=32, primary_key=True)
-    discord = models.CharField(max_length=30)
-    username = models.CharField(max_length=30)
-    platform = models.CharField(max_length=1, choices=platform_list)
-    accepted = models.BooleanField(default=False)
+    date_created   =  models.CharField(max_length=32, primary_key=True)
+    discord        =  models.CharField(max_length=30)
+    username       =  models.CharField(max_length=30)
+    platform       =  models.CharField(max_length=1, choices=platform_list)
+    accepted       = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username

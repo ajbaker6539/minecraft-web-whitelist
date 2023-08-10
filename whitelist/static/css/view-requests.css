@@ -1,0 +1,11 @@
+html {
+    border: 1px solid black;
+    margin: 5px;
+}
+tr {
+    border: 1px solid black;
+}
+th, td {
+    border-right: 1px solid black;
+    padding: 5px;
+}
